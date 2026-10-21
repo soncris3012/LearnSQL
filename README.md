@@ -5,7 +5,10 @@
 
 ![LearnSQL Banner](https://img.shields.io/badge/Platform-Web%20%7C%20Qt6%20%7C%20Tkinter-38bdf8?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge)
-![Deploy to Vercel](https://img.shields.io/badge/Deploy-Vercel%20Ready-black?style=for-the-badge&logo=vercel)
+[![Deploy to Vercel](https://img.shields.io/badge/Live%20Demo-learn--sql--theta.vercel.app-black?style=for-the-badge&logo=vercel)](https://learn-sql-theta.vercel.app)
+
+🔗 **Website trực tuyến:** [https://learn-sql-theta.vercel.app](https://learn-sql-theta.vercel.app)  
+📦 **GitHub Repository:** [https://github.com/soncris3012/LearnSQL](https://github.com/soncris3012/LearnSQL)
 
 ---
 
