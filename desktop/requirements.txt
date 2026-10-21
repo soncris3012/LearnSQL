@@ -1,0 +1,6 @@
+# Python Desktop Dependencies for LearnSQL
+# Supports both PyQt6 and PySide6 on Windows, macOS, Linux
+
+PyQt6>=6.5.0
+# Or uncomment below for PySide6 (Official Qt for Python)
+# PySide6>=6.5.0

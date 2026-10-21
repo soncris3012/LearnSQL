@@ -1,0 +1,20 @@
+{
+  "name": "learn-sql",
+  "version": "1.0.0",
+  "description": "Nền tảng học Cơ sở Dữ liệu & Lập trình T-SQL Trực quan - Viện CNTT&TT - HVKTQS",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve . -p 3000"
+  },
+  "keywords": [
+    "sql",
+    "t-sql",
+    "database",
+    "sqlite-wasm",
+    "sql-learning",
+    "hvktqs"
+  ],
+  "author": "Viện CNTT&TT - HVKTQS",
+  "license": "MIT"
+}

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LearnSQL - Học Cơ Sở Dữ Liệu & Lập Trình T-SQL Trực Quan | Viện CNTT&TT - HVKTQS</title>
+  <meta name="description" content="Trang web học Cơ sở dữ liệu và T-SQL trực quan, kèm bài tập mô phỏng chạy truy vấn thực tế trên dữ liệu Quản lý Điểm Học Viên của Viện CNTT&TT - HVKTQS.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗄️</text></svg>">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <a href="#" class="brand">
+      <div class="brand-logo">SQL</div>
+      <div class="brand-info">
+        <h1>LearnSQL Studio <span class="badge-tag">HVKTQS</span></h1>
+        <p>Viện Công nghệ Thông tin và Truyền thông</p>
+      </div>
+    </a>
+
+    <div class="header-actions">
+      <!-- Dataset Switcher -->
+      <div class="dataset-picker">
+        <button id="btn-dataset-student" class="dataset-btn active" title="CSDL Quản lý Điểm Học Viên (Slide 15 & 26)">
+          <span>🎓</span> Điểm Học Viên
+        </button>
+        <button id="btn-dataset-sales" class="dataset-btn" title="CSDL Bán Hàng & Đơn Hàng (Slide 17 & 42)">
+          <span>🛒</span> Bán Hàng
+        </button>
+      </div>
+
+      <!-- Learning Progress Widget -->
+      <div class="progress-widget">
+        <span class="progress-label">Tiến độ:</span>
+        <div class="progress-bar-container">
+          <div id="progress-fill" class="progress-bar-fill"></div>
+        </div>
+        <span id="progress-text" class="progress-percent">0/53</span>
+      </div>
+    </div>
+
+    <div class="nav-tools">
+      <button id="btn-reset-db" class="tool-btn" title="Khôi phục CSDL gốc (Reset Database)">
+        🔄
+      </button>
+      <button id="btn-cheatsheet" class="tool-btn" title="Sổ tay Cú pháp T-SQL Cheatsheet">
+        📖
+      </button>
+      <button id="btn-desktop-info" class="tool-btn" title="Tải Bản Desktop (Qt6 / Tkinter cho Win/Mac/Linux)">
+        💻
+      </button>
+      <button id="btn-theme-toggle" class="tool-btn" title="Đổi giao diện Sáng / Tối">
+        🌓
+      </button>
+      <a href="https://github.com" target="_blank" class="tool-btn" title="Mã nguồn GitHub">
+        🐙
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Three-Column Studio Workspace -->
+  <main class="app-container">
+    
+    <!-- LEFT COLUMN: CURRICULUM EXPLORER -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="lesson-search" class="search-input" placeholder="Tìm kiếm bài học, lệnh SQL (Ctrl+K)...">
+        </div>
+        <div class="filter-pills">
+          <button class="filter-pill active" data-filter="all">Tất cả</button>
+          <button class="filter-pill" data-filter="basic">DQL Cơ bản</button>
+          <button class="filter-pill" data-filter="advanced">Nâng cao</button>
+          <button class="filter-pill" data-filter="ddl">DDL & DML</button>
+          <button class="filter-pill" data-filter="tsql">T-SQL & SP</button>
+        </div>
+      </div>
+
+      <div id="curriculum-list" class="curriculum-list">
+        <!-- Chapters and lessons populated dynamically via app.js -->
+      </div>
+    </aside>
+
+    <!-- CENTER COLUMN: LESSON THEORY & SPEC -->
+    <section class="theory-panel">
+      <div class="theory-breadcrumbs">
+        <span id="breadcrumb-chapter">Chương 1</span>
+        <span>›</span>
+        <span id="breadcrumb-lesson">SQL giúp bạn làm gì?</span>
+      </div>
+
+      <div class="theory-title-group">
+        <h2 id="lesson-title">SQL giúp bạn làm gì?</h2>
+        <div class="theory-meta-tags">
+          <span class="meta-pill" id="meta-duration">⏱️ 5 phút</span>
+          <span class="meta-pill difficulty" id="meta-difficulty">🌱 Cơ bản</span>
+          <span class="meta-pill" id="meta-dataset">📊 Dataset: Điểm Học Viên</span>
+        </div>
+      </div>
+
+      <div id="lesson-content" class="theory-body">
+        <!-- Dynamic rich content injected from curriculum.js -->
+      </div>
+
+      <div class="theory-footer">
+        <button id="btn-prev-lesson" class="btn-secondary">
+          <span>←</span> Bài trước
+        </button>
+        <button id="btn-toggle-complete" class="btn-success">
+          <span>✓</span> Đánh dấu hoàn thành
+        </button>
+        <button id="btn-next-lesson" class="btn-secondary">
+          Bài tiếp theo <span>→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- RIGHT COLUMN: INTERACTIVE SQL PLAYGROUND -->
+    <section class="workspace-panel">
+      
+      <!-- Editor Toolbar -->
+      <div class="editor-toolbar">
+        <div class="editor-title">
+          <span>⚡</span>
+          <span>Trình Thực Thi SQL & T-SQL Trực Quan</span>
+        </div>
+        <div class="editor-controls">
+          <button id="btn-reset-code" class="btn-icon" title="Phục hồi câu lệnh mẫu">
+            ↺ Mẫu gốc
+          </button>
+          <button id="btn-format-sql" class="btn-icon" title="Căn chỉnh đẹp câu lệnh">
+            ✨ Căn lề
+          </button>
+          <button id="btn-run-sql" class="btn-run" title="Thực thi câu lệnh (Ctrl + Enter)">
+            ▶ Chạy SQL
+          </button>
+        </div>
+      </div>
+
+      <!-- Code Area with Line Numbers -->
+      <div class="editor-wrapper">
+        <div id="line-numbers" class="line-numbers">1</div>
+        <textarea id="sql-input" class="sql-textarea" spellcheck="false" placeholder="Nhập câu lệnh SELECT, INSERT, UPDATE, T-SQL... tại đây"></textarea>
+      </div>
+
+      <!-- Execution Console & Results -->
+      <div class="console-panel">
+        <div class="console-header">
+          <div class="console-tabs">
+            <button class="console-tab active" data-tab="results">
+              <span>📋</span> Bảng kết quả
+            </button>
+            <button class="console-tab" data-tab="messages">
+              <span>💬</span> Nhật ký & Thông báo
+            </button>
+            <button class="console-tab" data-tab="schema">
+              <span>🗂️</span> Cấu trúc CSDL
+            </button>
+            <button class="console-tab" data-tab="solution">
+              <span>💡</span> Gợi ý & Đáp án
+            </button>
+          </div>
+
+          <div class="console-meta">
+            <span id="exec-status" class="status-badge success">Sẵn sàng</span>
+            <span id="exec-rows">0 dòng</span>
+            <span id="exec-time">0.00 ms</span>
+          </div>
+        </div>
+
+        <div class="console-body">
+          <!-- Tab 1: Result Table Grid -->
+          <div id="tab-results" class="table-container">
+            <table id="result-table" class="sql-table">
+              <thead><tr id="table-head"></tr></thead>
+              <tbody id="table-body"></tbody>
+            </table>
+          </div>
+
+          <!-- Tab 2: Terminal Messages -->
+          <div id="tab-messages" class="terminal-messages" style="display: none;">
+            Hệ thống đã nạp CSDL Học viện Kỹ thuật Quân sự sẵn sàng thực thi truy vấn.
+Nhấn 'Chạy SQL' (hoặc Ctrl+Enter) để thực hiện câu lệnh.
+          </div>
+
+          <!-- Tab 3: Schema Inspector -->
+          <div id="tab-schema" class="schema-view" style="display: none;">
+            <!-- Populated with table schema cards -->
+          </div>
+
+          <!-- Tab 4: Solution Drawer -->
+          <div id="tab-solution" class="terminal-messages" style="display: none;">
+            <!-- Injected with current lesson hints -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Modal: T-SQL Cheatsheet & Tips -->
+  <div id="modal-cheatsheet" class="modal-overlay">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal('modal-cheatsheet')">&times;</button>
+      <h2 style="margin-bottom: 12px; color: var(--primary);">📖 Sổ Tay Cú Pháp T-SQL Cốt Lõi</h2>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Tóm lược các cấu trúc lập trình trong học phần Cơ sở dữ liệu - Viện CNTT&TT:</p>
+      
+      <div class="syntax-box">
+        <div class="syntax-label">1. KHAI BÁO BIẾN</div>
+        <code>DECLARE @TenHV NVARCHAR(50) = 'An';<br>SET @TenHV = 'Bình';</code>
+      </div>
+
+      <div class="syntax-box">
+        <div class="syntax-label">2. ĐIỀU KIỆN IF...ELSE</div>
+        <code>IF (@Diem >= 8.5) BEGIN PRINT 'Giỏi' END<br>ELSE BEGIN PRINT 'Đạt' END</code>
+      </div>
+
+      <div class="syntax-box">
+        <div class="syntax-label">3. VÒNG LẶP WHILE</div>
+        <code>WHILE (@i &lt;= 100) BEGIN SET @i = @i + 1; END</code>
+      </div>
+
+      <div class="syntax-box">
+        <div class="syntax-label">4. BẮT LỖI TRANSACTION & TRY...CATCH</div>
+        <code>BEGIN TRY<br>&nbsp;&nbsp;BEGIN TRANSACTION;<br>&nbsp;&nbsp;INSERT INTO...<br>&nbsp;&nbsp;COMMIT TRANSACTION;<br>END TRY<br>BEGIN CATCH<br>&nbsp;&nbsp;ROLLBACK TRANSACTION;<br>END CATCH</code>
+      </div>
+
+      <div class="syntax-box">
+        <div class="syntax-label">5. CON TRỎ CURSOR</div>
+        <code>DECLARE cur CURSOR FOR SELECT MaHV FROM HOCVIEN;<br>OPEN cur; FETCH NEXT FROM cur INTO @MaHV;<br>WHILE @@FETCH_STATUS = 0 BEGIN ... FETCH NEXT ... END;<br>CLOSE cur; DEALLOCATE cur;</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Desktop App Instructions (Qt & Tkinter) -->
+  <div id="modal-desktop" class="modal-overlay">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal('modal-desktop')">&times;</button>
+      <h2 style="margin-bottom: 12px; color: var(--primary);">💻 Phiên Bản Desktop (Windows, macOS, Linux)</h2>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Dự án bao gồm 2 phiên bản ứng dụng máy tính nguyên bản (Native Desktop):</p>
+      
+      <div class="note-box tip">
+        <span class="icon">✨</span>
+        <div>
+          <strong>1. Phiên bản Tkinter (Có sẵn trong Python, không cần cài đặt thêm):</strong><br>
+          Chạy ngay lập tức trên mọi hệ điều hành:<br>
+          <code>python3 desktop/app_tkinter.py</code>
+        </div>
+      </div>
+
+      <div class="note-box info">
+        <span class="icon">🚀</span>
+        <div>
+          <strong>2. Phiên bản Qt6 (Giao diện cao cấp PyQt6 / PySide6):</strong><br>
+          Cài đặt thư viện và khởi chạy:<br>
+          <code>pip install -r desktop/requirements.txt</code><br>
+          <code>python3 desktop/app_qt.py</code>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Load Scripts -->
+  <script src="vendor/sql-wasm.js"></script>
+  <script src="js/database.js"></script>
+  <script src="js/curriculum.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

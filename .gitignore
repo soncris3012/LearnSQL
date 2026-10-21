@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+dist/
+build/
+
+# Vercel
+.vercel
